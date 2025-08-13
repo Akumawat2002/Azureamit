@@ -1,0 +1,126 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "SanderADF"
+		},
+		"ADLS_ls_accountKey": {
+			"value": ""
+		},
+		"AzureDataLakeStorage_hos_accountKey": {
+			"value": ""
+		},
+		"AzureDatabricksDeltaLake_hos_ls_accessToken": {
+			"value": ""
+		},
+		"AzureExcelBlobLinkedService_connectionString": {
+			"value": ""
+		},
+		"AzureSQLDB_ls_password": {
+			"value": ""
+		},
+		"DataflowTest_password": {
+			"value": ""
+		},
+		"Demo_password": {
+			"value": ""
+		},
+		"LoggingInbound_connectionString": {
+			"value": ""
+		},
+		"PracticeDataLinkedService_password": {
+			"value": ""
+		},
+		"SqlServerLinkedService_password": {
+			"value": ""
+		},
+		"hosa_sql_ls_password": {
+			"value": ""
+		},
+		"rdest_dl_accountKey": {
+			"value": ""
+		},
+		"rsource_dl_accountKey": {
+			"value": ""
+		},
+		"tt_hc_adb_ls_accessToken": {
+			"value": ""
+		},
+		"ADLS_ls_properties_typeProperties_url": {
+			"value": "https://sanderstoragaccount.dfs.core.windows.net/"
+		},
+		"AzureDataLakeStorage_hos_properties_typeProperties_url": {
+			"value": "https://sanderstoragaccount.dfs.core.windows.net/"
+		},
+		"AzureSQLDB_ls_properties_typeProperties_server": {
+			"value": "azuressqlserver.database.windows.net"
+		},
+		"AzureSQLDB_ls_properties_typeProperties_database": {
+			"value": "DataSales"
+		},
+		"AzureSQLDB_ls_properties_typeProperties_userName": {
+			"value": "amit"
+		},
+		"DataflowTest_properties_typeProperties_server": {
+			"value": "LP506"
+		},
+		"DataflowTest_properties_typeProperties_database": {
+			"value": "TechInitiativeTracker"
+		},
+		"DataflowTest_properties_typeProperties_userName": {
+			"value": "sa"
+		},
+		"Demo_properties_typeProperties_server": {
+			"value": "azuressqlserver.database.windows.net"
+		},
+		"Demo_properties_typeProperties_database": {
+			"value": "demo"
+		},
+		"Demo_properties_typeProperties_userName": {
+			"value": "amit"
+		},
+		"PracticeDataLinkedService_properties_typeProperties_server": {
+			"value": "LP506"
+		},
+		"PracticeDataLinkedService_properties_typeProperties_database": {
+			"value": "Employees"
+		},
+		"PracticeDataLinkedService_properties_typeProperties_userName": {
+			"value": "sa"
+		},
+		"SqlServerLinkedService_properties_typeProperties_server": {
+			"value": "LP506"
+		},
+		"SqlServerLinkedService_properties_typeProperties_database": {
+			"value": "PocTracker"
+		},
+		"SqlServerLinkedService_properties_typeProperties_userName": {
+			"value": "sa"
+		},
+		"hosa_sql_ls_properties_typeProperties_server": {
+			"value": "azuressqlserver.database.windows.net"
+		},
+		"hosa_sql_ls_properties_typeProperties_database": {
+			"value": "@{linkedService().db_name}"
+		},
+		"hosa_sql_ls_properties_typeProperties_userName": {
+			"value": "amit"
+		},
+		"rdest_dl_properties_typeProperties_url": {
+			"value": "https://sanderstoragaccount.dfs.core.windows.net/"
+		},
+		"rsource_dl_properties_typeProperties_url": {
+			"value": "https://sanderstoragaccount.dfs.core.windows.net/"
+		},
+		"sourcegit_properties_typeProperties_url": {
+			"value": "https://raw.githubusercontent.com"
+		},
+		"tt_hc_adb_ls_properties_typeProperties_existingClusterId": {
+			"value": "0722-123005-xokc5qci"
+		},
+		"InboundFactTrigger_properties_typeProperties_scope": {
+			"value": "/subscriptions/185bb725-bce0-4ae4-a88b-718e680cacdb/resourceGroups/Azure-RG/providers/Microsoft.Storage/storageAccounts/sanderstoragaccount"
+		}
+	}
+}
