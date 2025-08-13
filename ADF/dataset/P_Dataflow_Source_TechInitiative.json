@@ -1,0 +1,100 @@
+{
+	"name": "P_Dataflow_Source_TechInitiative",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureExcelBlobLinkedService",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "TechInitative",
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Dataflow - Test.xlsx",
+				"folderPath": "Input - Test",
+				"container": "datamigration"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "TechInitiativeId",
+				"type": "String"
+			},
+			{
+				"name": "Title",
+				"type": "String"
+			},
+			{
+				"name": "CategoryId",
+				"type": "String"
+			},
+			{
+				"name": "TechComponent",
+				"type": "String"
+			},
+			{
+				"name": "DomainId",
+				"type": "String"
+			},
+			{
+				"name": "Objective",
+				"type": "String"
+			},
+			{
+				"name": "Description",
+				"type": "String"
+			},
+			{
+				"name": "ExpectedOutcome",
+				"type": "String"
+			},
+			{
+				"name": "StatusId",
+				"type": "String"
+			},
+			{
+				"name": "StartDate",
+				"type": "String"
+			},
+			{
+				"name": "EndDate",
+				"type": "String"
+			},
+			{
+				"name": "Platform",
+				"type": "String"
+			},
+			{
+				"name": "Version",
+				"type": "String"
+			},
+			{
+				"name": "BusinessImpact",
+				"type": "String"
+			},
+			{
+				"name": "CreatedDate",
+				"type": "String"
+			},
+			{
+				"name": "CreatedBy",
+				"type": "String"
+			},
+			{
+				"name": "ModifiedDate",
+				"type": "String"
+			},
+			{
+				"name": "ModifiedBy",
+				"type": "String"
+			},
+			{
+				"name": "DeletedDate",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

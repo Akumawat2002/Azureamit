@@ -1,0 +1,374 @@
+{
+	"name": "Excel to DB Migration",
+	"properties": {
+		"activities": [
+			{
+				"name": "UserVariable",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "MappedUser",
+					"value": {
+						"value": "{\n  \"type\": \"TabularTranslator\",\n  \"mappings\":[\n                {\n                    \"source\": {\n                        \"name\": \"UserId\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"UserId\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"varchar\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"TenantId\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"TenantId\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"varchar\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"UserCode\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"UserCode\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"varchar\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"FirstName\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"FirstName\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"varchar\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"MiddleName\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"MiddleName\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"varchar\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"LastName\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"LastName\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"varchar\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"MobileNumber\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"MobileNumber\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"varchar\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"AboutMe\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"AboutMe\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"varchar\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"EmailId\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"EmailId\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"varchar\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"PersonalEmailId\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"PersonalEmailId\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"varchar\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"ProfileImage\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"ProfileImage\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"nvarchar\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"GenderId\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"GenderId\",\n                        \"type\": \"Int32\",\n                        \"physicalType\": \"int\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"BloodGroupId\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"BloodGroupId\",\n                        \"type\": \"Int32\",\n                        \"physicalType\": \"int\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"BirthDate\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"BirthDate\",\n                        \"type\": \"DateTime\",\n                        \"physicalType\": \"date\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"MaritalStatusId\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"MaritalStatusId\",\n                        \"type\": \"Int32\",\n                        \"physicalType\": \"int\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"WeddingAnniversary\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"WeddingAnniversary\",\n                        \"type\": \"DateTime\",\n                        \"physicalType\": \"date\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"DateOfJoining\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"DateOfJoining\",\n                        \"type\": \"DateTime\",\n                        \"physicalType\": \"date\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"ImpactDate\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"ImpactDate\",\n                        \"type\": \"DateTime\",\n                        \"physicalType\": \"date\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"IsFresher\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"IsFresher\",\n                        \"type\": \"Boolean\",\n                        \"physicalType\": \"bit\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"IsResidentialAsPermanentAddress\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"IsResidentialAsPermanentAddress\",\n                        \"type\": \"Boolean\",\n                        \"physicalType\": \"bit\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"Remarks\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"Remarks\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"varchar\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"WorkShiftId\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"WorkShiftId\",\n                        \"type\": \"Int32\",\n                        \"physicalType\": \"int\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"CreatedDate\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"CreatedDate\",\n                        \"type\": \"DateTime\",\n                        \"physicalType\": \"datetime\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"CreatedBy\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"CreatedBy\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"varchar\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"ModifiedDate\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"ModifiedDate\",\n                        \"type\": \"DateTime\",\n                        \"physicalType\": \"datetime\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"ModifiedBy\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"ModifiedBy\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"varchar\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"DeletedDate\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"DeletedDate\",\n                        \"type\": \"DateTime\",\n                        \"physicalType\": \"datetime\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"OldUserId\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"OldUserId\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"varchar\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"RelievedDate\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"RelievedDate\",\n                        \"type\": \"DateTime\",\n                        \"physicalType\": \"date\"\n                    }\n                }\n            ]\n}",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "User Data Excel to DB",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "UserVariable",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "ExcelSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						}
+					},
+					"sink": {
+						"type": "SqlServerSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"value": "@json(variables('MappedUser'))",
+						"type": "Expression"
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "UserExcel",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "UserSqlServer",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "Excel to DB",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "User Data Excel to DB",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@variables('SequenceForEachLoop')",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "Excel to DB Migration",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "ExcelSource",
+									"storeSettings": {
+										"type": "AzureBlobStorageReadSettings",
+										"recursive": true,
+										"enablePartitionDiscovery": false
+									}
+								},
+								"sink": {
+									"type": "SqlServerSink",
+									"writeBehavior": "insert",
+									"sqlWriterUseTableLock": false
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": true,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "ExcelData",
+									"type": "DatasetReference",
+									"parameters": {
+										"sheet": {
+											"value": "@item().sheet",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "SqlServerData",
+									"type": "DatasetReference",
+									"parameters": {
+										"SchemaName": {
+											"value": "@item().SchemaName",
+											"type": "Expression"
+										},
+										"Table": {
+											"value": "@item().Table",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					]
+				}
+			},
+			{
+				"name": "EvaluationVariable",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Excel to DB",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "MappedEvaluation",
+					"value": {
+						"value": "{\n  \"type\": \"TabularTranslator\",\n  \"mappings\":[\n                {\n                    \"source\": {\n                        \"name\": \"EvaluationId\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"EvaluationId\",\n                        \"type\": \"Int32\",\n                        \"physicalType\": \"int\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"TechInitiativeId\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"TechInitiativeId\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"varchar\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"ProjectId\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"ProjectId\",\n                        \"type\": \"Int32\",\n                        \"physicalType\": \"int\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"EvaluatedBy\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"EvaluatedBy\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"varchar\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"IsAdopted\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"IsAdopted\",\n                        \"type\": \"Boolean\",\n                        \"physicalType\": \"bit\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"AdoptionDate\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"AdoptionDate\",\n                        \"type\": \"DateTime\",\n                        \"physicalType\": \"date\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"IsUsedInProduction\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"IsUsedInProduction\",\n                        \"type\": \"Boolean\",\n                        \"physicalType\": \"bit\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"IsUsedInProject\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"IsUsedInProject\",\n                        \"type\": \"Boolean\",\n                        \"physicalType\": \"bit\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"Remark\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"Remark\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"varchar\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"CreatedDate\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"CreatedDate\",\n                        \"type\": \"DateTime\",\n                        \"physicalType\": \"datetime\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"CreatedBy\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"CreatedBy\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"varchar\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"ModifiedDate\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"ModifiedDate\",\n                        \"type\": \"DateTime\",\n                        \"physicalType\": \"datetime\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"ModifiedBy\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"ModifiedBy\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"varchar\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"DeletedDate\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"DeletedDate\",\n                        \"type\": \"DateTime\",\n                        \"physicalType\": \"datetime\"\n                    }\n                }\n            ]\n}",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Evaluation Data Excel to DB",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "EvaluationVariable",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "ExcelSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						}
+					},
+					"sink": {
+						"type": "SqlServerSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"value": "@json(variables('MappedEvaluation'))",
+						"type": "Expression"
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "EvaluationExcel",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "EvaluationSqlServer",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "SuggestionVariable",
+				"type": "SetVariable",
+				"dependsOn": [
+					{
+						"activity": "Evaluation Data Excel to DB",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "MappedSuggestion",
+					"value": {
+						"value": "{\n  \"type\": \"TabularTranslator\",\n  \"mappings\":[\n                {\n                    \"source\": {\n                        \"name\": \"SuggestionId\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"SuggestionId\",\n                        \"type\": \"Int32\",\n                        \"physicalType\": \"int\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"TechInitiativeId\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"TechInitiativeId\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"varchar\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"UserId\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"UserId\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"varchar\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"Suggestion\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"Suggestion\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"nvarchar\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"IsSuggestionApplied\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"IsSuggestionApplied\",\n                        \"type\": \"Boolean\",\n                        \"physicalType\": \"bit\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"CreatedDate\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"CreatedDate\",\n                        \"type\": \"DateTime\",\n                        \"physicalType\": \"datetime\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"CreatedBy\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"CreatedBy\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"varchar\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"ModifiedDate\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"ModifiedDate\",\n                        \"type\": \"DateTime\",\n                        \"physicalType\": \"datetime\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"ModifiedBy\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"ModifiedBy\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"varchar\"\n                    }\n                },\n                {\n                    \"source\": {\n                        \"name\": \"DeletedDate\",\n                        \"type\": \"String\",\n                        \"physicalType\": \"String\"\n                    },\n                    \"sink\": {\n                        \"name\": \"DeletedDate\",\n                        \"type\": \"DateTime\",\n                        \"physicalType\": \"datetime\"\n                    }\n                }\n            ]\n}",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Suggestion Data Excel to DB",
+				"type": "Copy",
+				"dependsOn": [
+					{
+						"activity": "SuggestionVariable",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "ExcelSource",
+						"storeSettings": {
+							"type": "AzureBlobStorageReadSettings",
+							"recursive": true,
+							"enablePartitionDiscovery": false
+						}
+					},
+					"sink": {
+						"type": "SqlServerSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": false,
+					"translator": {
+						"value": "@json(variables('MappedSuggestion'))",
+						"type": "Expression"
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "SuggestionExcel",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "SuggestionSqlServer",
+						"type": "DatasetReference"
+					}
+				]
+			}
+		],
+		"variables": {
+			"MappedUser": {
+				"type": "String"
+			},
+			"MappedEvaluation": {
+				"type": "String"
+			},
+			"MappedSuggestion": {
+				"type": "String"
+			},
+			"SequenceForEachLoop": {
+				"type": "Array",
+				"defaultValue": [
+					{
+						"sheet": "Status",
+						"SchemaName": "Ref",
+						"Table": "Status"
+					},
+					{
+						"sheet": "Category",
+						"SchemaName": "Ref",
+						"Table": "Category"
+					},
+					{
+						"sheet": "Domain",
+						"SchemaName": "Org",
+						"Table": "Domain"
+					},
+					{
+						"sheet": "Project",
+						"SchemaName": "Project",
+						"Table": "Project"
+					},
+					{
+						"sheet": "TechInitiative",
+						"SchemaName": "TechInitiative",
+						"Table": "TechInitiative"
+					},
+					{
+						"sheet": "ActivityTracker",
+						"SchemaName": "TechInitiative",
+						"Table": "ActivityTracker"
+					},
+					{
+						"sheet": "ReferenceLinkType",
+						"SchemaName": "TechInitiative",
+						"Table": "ReferenceLinkType"
+					},
+					{
+						"sheet": "IntegrationArea",
+						"SchemaName": "TechInitiative",
+						"Table": "IntegrationArea"
+					}
+				]
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2025-07-24T16:33:41Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

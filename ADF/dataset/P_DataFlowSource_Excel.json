@@ -1,0 +1,140 @@
+{
+	"name": "P_DataFlowSource_Excel",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureExcelBlobLinkedService",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "User",
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Dataflow - Test.xlsx",
+				"folderPath": "Input - Test",
+				"container": "datamigration"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "UserId",
+				"type": "String"
+			},
+			{
+				"name": "TenantId",
+				"type": "String"
+			},
+			{
+				"name": "UserCode",
+				"type": "String"
+			},
+			{
+				"name": "FirstName",
+				"type": "String"
+			},
+			{
+				"name": "MiddleName",
+				"type": "String"
+			},
+			{
+				"name": "LastName",
+				"type": "String"
+			},
+			{
+				"name": "MobileNumber",
+				"type": "String"
+			},
+			{
+				"name": "AboutMe",
+				"type": "String"
+			},
+			{
+				"name": "EmailId",
+				"type": "String"
+			},
+			{
+				"name": "PersonalEmailId",
+				"type": "String"
+			},
+			{
+				"name": "ProfileImage",
+				"type": "String"
+			},
+			{
+				"name": "GenderId",
+				"type": "String"
+			},
+			{
+				"name": "BloodGroupId",
+				"type": "String"
+			},
+			{
+				"name": "BirthDate",
+				"type": "String"
+			},
+			{
+				"name": "MaritalStatusId",
+				"type": "String"
+			},
+			{
+				"name": "WeddingAnniversary",
+				"type": "String"
+			},
+			{
+				"name": "DateOfJoining",
+				"type": "String"
+			},
+			{
+				"name": "ImpactDate",
+				"type": "String"
+			},
+			{
+				"name": "IsFresher",
+				"type": "String"
+			},
+			{
+				"name": "IsResidentialAsPermanentAddress",
+				"type": "String"
+			},
+			{
+				"name": "Remarks",
+				"type": "String"
+			},
+			{
+				"name": "WorkShiftId",
+				"type": "String"
+			},
+			{
+				"name": "CreatedDate",
+				"type": "String"
+			},
+			{
+				"name": "CreatedBy",
+				"type": "String"
+			},
+			{
+				"name": "ModifiedDate",
+				"type": "String"
+			},
+			{
+				"name": "ModifiedBy",
+				"type": "String"
+			},
+			{
+				"name": "DeletedDate",
+				"type": "String"
+			},
+			{
+				"name": "OldUserId",
+				"type": "String"
+			},
+			{
+				"name": "RelievedDate",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,40 @@
+{
+	"name": "P_Dataflow_Source_Status",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureExcelBlobLinkedService",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "Status",
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Dataflow - Test.xlsx",
+				"folderPath": "Input - Test",
+				"container": "datamigration"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "StatusId",
+				"type": "String"
+			},
+			{
+				"name": "Status",
+				"type": "String"
+			},
+			{
+				"name": "CreatedDate",
+				"type": "String"
+			},
+			{
+				"name": "DeletedDate",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

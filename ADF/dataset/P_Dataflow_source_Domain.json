@@ -1,0 +1,92 @@
+{
+	"name": "P_Dataflow_source_Domain",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureExcelBlobLinkedService",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "Domain",
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Dataflow - Test.xlsx",
+				"folderPath": "Input - Test",
+				"container": "datamigration"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "DomainId",
+				"type": "String"
+			},
+			{
+				"name": "TenantId",
+				"type": "String"
+			},
+			{
+				"name": "ParentDomainId",
+				"type": "String"
+			},
+			{
+				"name": "Domain",
+				"type": "String"
+			},
+			{
+				"name": "Abbreviation",
+				"type": "String"
+			},
+			{
+				"name": "LogoURL",
+				"type": "String"
+			},
+			{
+				"name": "EmailId",
+				"type": "String"
+			},
+			{
+				"name": "Description",
+				"type": "String"
+			},
+			{
+				"name": "CountOfEmployees",
+				"type": "String"
+			},
+			{
+				"name": "CreatedDate",
+				"type": "String"
+			},
+			{
+				"name": "CreatedBy",
+				"type": "String"
+			},
+			{
+				"name": "ModifiedDate",
+				"type": "String"
+			},
+			{
+				"name": "ModifiedBy",
+				"type": "String"
+			},
+			{
+				"name": "DeletedDate",
+				"type": "String"
+			},
+			{
+				"name": "ValidFrom",
+				"type": "String"
+			},
+			{
+				"name": "ValidTo",
+				"type": "String"
+			},
+			{
+				"name": "RemovedDate",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

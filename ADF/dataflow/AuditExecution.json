@@ -1,0 +1,158 @@
+{
+	"name": "AuditExecution",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "AzSQL_ExA_FactTrans",
+						"type": "DatasetReference"
+					},
+					"name": "FactTransaction"
+				},
+				{
+					"dataset": {
+						"referenceName": "AzSQL_ExA_DimCustomer",
+						"type": "DatasetReference"
+					},
+					"name": "DimCustomer"
+				},
+				{
+					"dataset": {
+						"referenceName": "AzSQL_ExA_DimProducts",
+						"type": "DatasetReference"
+					},
+					"name": "DimProducts"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "AzureSQL_AuditExecution",
+						"type": "DatasetReference"
+					},
+					"name": "AuditExecution"
+				}
+			],
+			"transformations": [
+				{
+					"name": "RunDateFactT"
+				},
+				{
+					"name": "RunDateCust"
+				},
+				{
+					"name": "RunDateProducts"
+				},
+				{
+					"name": "DerFactNameTable"
+				},
+				{
+					"name": "DevDimCustTable"
+				},
+				{
+					"name": "DevDimProductTable"
+				},
+				{
+					"name": "FactTransDimCust"
+				},
+				{
+					"name": "FactTransDimCustDimProd"
+				},
+				{
+					"name": "SelectedColumns"
+				},
+				{
+					"name": "AlterRow1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          transaction_id as short,",
+				"          customer_id as short,",
+				"          product_id as short,",
+				"          quantity as short,",
+				"          channel as string,",
+				"          CreatedDate as string,",
+				"          ModifiedDate as string,",
+				"          price as short,",
+				"          order_id as string,",
+				"          payment_mode as string,",
+				"          feedback_id as short,",
+				"          rating as short,",
+				"          comments as string,",
+				"          RunDate as timestamp",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> FactTransaction",
+				"source(output(",
+				"          customer_id as short,",
+				"          {First Name} as string,",
+				"          {Last Name} as string,",
+				"          gender as string,",
+				"          dob as string,",
+				"          {Email Address} as string,",
+				"          CreatedDate as string,",
+				"          ModifiedDate as string,",
+				"          cust_count as short,",
+				"          {Full Name} as string,",
+				"          FullName as string,",
+				"          RunDate as timestamp",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> DimCustomer",
+				"source(output(",
+				"          {Real Product Name} as string,",
+				"          product_id as short,",
+				"          category as string,",
+				"          price as short,",
+				"          CreatedDate as string,",
+				"          ModifiedDate as string,",
+				"          prd_count as boolean,",
+				"          RunDate as timestamp",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> DimProducts",
+				"FactTransaction aggregate(groupBy(RunDate),",
+				"     Run_Date = max(RunDate)) ~> RunDateFactT",
+				"DimCustomer aggregate(groupBy(RunDate),",
+				"     Run_Date = max(RunDate)) ~> RunDateCust",
+				"DimProducts aggregate(groupBy(RunDate),",
+				"     Run_Date = max(RunDate)) ~> RunDateProducts",
+				"RunDateFactT derive(TableName = 'FactTransaction.csv') ~> DerFactNameTable",
+				"RunDateCust derive(TableName = 'DimCustomers.csv') ~> DevDimCustTable",
+				"RunDateProducts derive(TableName = 'DimProducts.csv') ~> DevDimProductTable",
+				"DerFactNameTable, DevDimCustTable union(byName: true)~> FactTransDimCust",
+				"FactTransDimCust, DevDimProductTable union(byName: true)~> FactTransDimCustDimProd",
+				"FactTransDimCustDimProd select(mapColumn(",
+				"          RunDate,",
+				"          TableName",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> SelectedColumns",
+				"SelectedColumns alterRow(upsertIf(true())) ~> AlterRow1",
+				"AlterRow1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:false,",
+				"     updateable:false,",
+				"     upsertable:true,",
+				"     keys:['TableName'],",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     partitionBy('hash', 1),",
+				"     preCommands: [],",
+				"     postCommands: []) ~> AuditExecution"
+			]
+		}
+	}
+}

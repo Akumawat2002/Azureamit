@@ -1,0 +1,144 @@
+{
+	"name": "UserSqlServer",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServerLinkedService",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "UserId",
+				"type": "varchar"
+			},
+			{
+				"name": "TenantId",
+				"type": "varchar"
+			},
+			{
+				"name": "UserCode",
+				"type": "varchar"
+			},
+			{
+				"name": "FirstName",
+				"type": "varchar"
+			},
+			{
+				"name": "MiddleName",
+				"type": "varchar"
+			},
+			{
+				"name": "LastName",
+				"type": "varchar"
+			},
+			{
+				"name": "MobileNumber",
+				"type": "varchar"
+			},
+			{
+				"name": "AboutMe",
+				"type": "varchar"
+			},
+			{
+				"name": "EmailId",
+				"type": "varchar"
+			},
+			{
+				"name": "PersonalEmailId",
+				"type": "varchar"
+			},
+			{
+				"name": "ProfileImage",
+				"type": "nvarchar"
+			},
+			{
+				"name": "GenderId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BloodGroupId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "BirthDate",
+				"type": "date"
+			},
+			{
+				"name": "MaritalStatusId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "WeddingAnniversary",
+				"type": "date"
+			},
+			{
+				"name": "DateOfJoining",
+				"type": "date"
+			},
+			{
+				"name": "ImpactDate",
+				"type": "date"
+			},
+			{
+				"name": "IsFresher",
+				"type": "bit"
+			},
+			{
+				"name": "IsResidentialAsPermanentAddress",
+				"type": "bit"
+			},
+			{
+				"name": "Remarks",
+				"type": "varchar"
+			},
+			{
+				"name": "WorkShiftId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "CreatedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "CreatedBy",
+				"type": "varchar"
+			},
+			{
+				"name": "ModifiedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "ModifiedBy",
+				"type": "varchar"
+			},
+			{
+				"name": "DeletedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "OldUserId",
+				"type": "varchar"
+			},
+			{
+				"name": "RelievedDate",
+				"type": "date"
+			}
+		],
+		"typeProperties": {
+			"schema": "User",
+			"table": "User"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,213 @@
+{
+	"name": "p_DataFlowTest",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "P_DataFlowSource_Excel",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				},
+				{
+					"dataset": {
+						"referenceName": "P_Dataflow_source_Domain",
+						"type": "DatasetReference"
+					},
+					"name": "source2"
+				},
+				{
+					"dataset": {
+						"referenceName": "P_Dataflow_Source_Category",
+						"type": "DatasetReference"
+					},
+					"name": "source3"
+				},
+				{
+					"dataset": {
+						"referenceName": "P_Dataflow_Source_Status",
+						"type": "DatasetReference"
+					},
+					"name": "source4"
+				},
+				{
+					"dataset": {
+						"referenceName": "P_Dataflow_Source_TechInitiative",
+						"type": "DatasetReference"
+					},
+					"name": "source5"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "P_Dataflow_Sink_User",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				},
+				{
+					"dataset": {
+						"referenceName": "P_Dataflow_Sink_Domain",
+						"type": "DatasetReference"
+					},
+					"name": "sink2"
+				},
+				{
+					"dataset": {
+						"referenceName": "P_Dataflow_Sink_Category",
+						"type": "DatasetReference"
+					},
+					"name": "sink3"
+				},
+				{
+					"dataset": {
+						"referenceName": "P_Dataflow_Sink_Status",
+						"type": "DatasetReference"
+					},
+					"name": "sink4"
+				},
+				{
+					"dataset": {
+						"referenceName": "P_DataFlow_Sink_TechInitiative",
+						"type": "DatasetReference"
+					},
+					"name": "sink5"
+				}
+			],
+			"transformations": [],
+			"scriptLines": [
+				"source(output(",
+				"          UserId as string,",
+				"          TenantId as string,",
+				"          UserCode as string,",
+				"          FirstName as string,",
+				"          MiddleName as string,",
+				"          LastName as string,",
+				"          MobileNumber as string,",
+				"          AboutMe as string,",
+				"          EmailId as string,",
+				"          PersonalEmailId as string,",
+				"          ProfileImage as string,",
+				"          GenderId as integer,",
+				"          BloodGroupId as integer,",
+				"          BirthDate as date,",
+				"          MaritalStatusId as integer,",
+				"          WeddingAnniversary as date,",
+				"          DateOfJoining as date,",
+				"          ImpactDate as date,",
+				"          IsFresher as boolean,",
+				"          IsResidentialAsPermanentAddress as boolean,",
+				"          Remarks as string,",
+				"          WorkShiftId as integer,",
+				"          CreatedDate as string,",
+				"          CreatedBy as string,",
+				"          ModifiedDate as string,",
+				"          ModifiedBy as string,",
+				"          DeletedDate as string,",
+				"          OldUserId as string,",
+				"          RelievedDate as date",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source(output(",
+				"          DomainId as integer,",
+				"          TenantId as string,",
+				"          ParentDomainId as integer,",
+				"          Domain as string,",
+				"          Abbreviation as string,",
+				"          LogoURL as string,",
+				"          EmailId as string,",
+				"          Description as string,",
+				"          CountOfEmployees as integer,",
+				"          CreatedDate as string,",
+				"          CreatedBy as string,",
+				"          ModifiedDate as string,",
+				"          ModifiedBy as string,",
+				"          DeletedDate as string,",
+				"          ValidFrom as string,",
+				"          ValidTo as string,",
+				"          RemovedDate as date",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source2",
+				"source(output(",
+				"          CategoryId as integer,",
+				"          Category as string,",
+				"          CreatedDate as string,",
+				"          DeletedDate as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source3",
+				"source(output(",
+				"          StatusId as integer,",
+				"          Status as string,",
+				"          CreatedDate as string,",
+				"          DeletedDate as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source4",
+				"source(output(",
+				"          TechInitiativeId as string,",
+				"          Title as string,",
+				"          CategoryId as integer,",
+				"          TechComponent as string,",
+				"          DomainId as integer,",
+				"          Objective as string,",
+				"          Description as string,",
+				"          ExpectedOutcome as string,",
+				"          StatusId as integer,",
+				"          StartDate as string,",
+				"          EndDate as string,",
+				"          Platform as string,",
+				"          Version as string,",
+				"          BusinessImpact as string,",
+				"          CreatedDate as string,",
+				"          CreatedBy as string,",
+				"          ModifiedDate as string,",
+				"          ModifiedBy as string,",
+				"          DeletedDate as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source5",
+				"source1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:['User.csv'],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink1",
+				"source2 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:['Domain.csv'],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink2",
+				"source3 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:['Category.csv'],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink3",
+				"source4 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:['Status.csv'],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink4",
+				"source5 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:['TechInitiative.csv'],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> sink5"
+			]
+		}
+	}
+}
