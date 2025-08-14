@@ -1,0 +1,195 @@
+{
+	"name": "FactTransaction",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DF_EDW_Source",
+						"type": "DatasetReference"
+					},
+					"name": "CustomerData"
+				},
+				{
+					"dataset": {
+						"referenceName": "JoinProductData",
+						"type": "DatasetReference"
+					},
+					"name": "ProductData"
+				},
+				{
+					"dataset": {
+						"referenceName": "JoinOrdersData",
+						"type": "DatasetReference"
+					},
+					"name": "OrdersData"
+				},
+				{
+					"dataset": {
+						"referenceName": "JoinFeedBackData",
+						"type": "DatasetReference"
+					},
+					"name": "FeedbackData"
+				},
+				{
+					"dataset": {
+						"referenceName": "JoinStoreSalesData",
+						"type": "DatasetReference"
+					},
+					"name": "StoresSales"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "AzureSQL_FactTransaction",
+						"type": "DatasetReference"
+					},
+					"name": "FactTable"
+				}
+			],
+			"transformations": [
+				{
+					"name": "Join1"
+				},
+				{
+					"name": "join2"
+				},
+				{
+					"name": "join3"
+				},
+				{
+					"name": "join4"
+				},
+				{
+					"name": "SelectedColums"
+				},
+				{
+					"name": "AddRunDateColumn"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          customer_id as short,",
+				"          {First Name} as string,",
+				"          {Last Name} as string,",
+				"          gender as string,",
+				"          dob as string,",
+				"          {Email Address} as string,",
+				"          CreatedDate as string,",
+				"          ModifiedDate as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> CustomerData",
+				"source(output(",
+				"          product_id as short,",
+				"          {Real Product Name} as string,",
+				"          category as string,",
+				"          price as short,",
+				"          CreatedDate as string,",
+				"          ModifiedDate as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> ProductData",
+				"source(output(",
+				"          order_id as string,",
+				"          customer_id as short,",
+				"          product_id as short,",
+				"          order_datetime as string,",
+				"          qty as short,",
+				"          payment_mode as string,",
+				"          channel as string,",
+				"          CreatedDate as string,",
+				"          ModifiedDate as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> OrdersData",
+				"source(output(",
+				"          feedback_id as short,",
+				"          customer_id as short,",
+				"          rating as short,",
+				"          comments as string,",
+				"          submitted_on as string,",
+				"          ModifiedBy as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> FeedbackData",
+				"source(output(",
+				"          transaction_id as short,",
+				"          customer_id as short,",
+				"          product_id as short,",
+				"          order_date as string,",
+				"          quantity as short,",
+				"          channel as string,",
+				"          CreatedDate as string,",
+				"          ModifiedDate as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> StoresSales",
+				"StoresSales, CustomerData join(StoresSales@customer_id == CustomerData@customer_id,",
+				"     joinType:'left',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> Join1",
+				"Join1, ProductData join(StoresSales@product_id == ProductData@product_id,",
+				"     joinType:'left',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join2",
+				"join2, OrdersData join(StoresSales@customer_id == OrdersData@customer_id,",
+				"     joinType:'left',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join3",
+				"join3, FeedbackData join(StoresSales@customer_id == FeedbackData@customer_id,",
+				"     joinType:'left',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join4",
+				"join4 select(mapColumn(",
+				"          transaction_id,",
+				"          customer_id = StoresSales@customer_id,",
+				"          product_id = StoresSales@product_id,",
+				"          quantity,",
+				"          channel = StoresSales@channel,",
+				"          CreatedDate = StoresSales@CreatedDate,",
+				"          ModifiedDate = StoresSales@ModifiedDate,",
+				"          price,",
+				"          order_id,",
+				"          payment_mode,",
+				"          feedback_id,",
+				"          rating,",
+				"          comments",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> SelectedColums",
+				"SelectedColums derive(RunDate = toTimestamp(\r",
+				"  toString(\r",
+				"    add(add(fromUTC(currentTimestamp(), 'India Standard Time'), hours(5)), minutes(30)),\r",
+				"    'dd/MM/yyyy HH:mm:ss'\r",
+				"  ),\r",
+				"  'dd/MM/yyyy HH:mm:ss'\r",
+				")) ~> AddRunDateColumn",
+				"AddRunDateColumn sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     partitionBy('hash', 1),",
+				"     preCommands: [],",
+				"     postCommands: []) ~> FactTable"
+			]
+		}
+	}
+}

@@ -1,0 +1,40 @@
+{
+	"name": "P_Dataflow_Source_Category",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureExcelBlobLinkedService",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "Category",
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Dataflow - Test.xlsx",
+				"folderPath": "Input - Test",
+				"container": "datamigration"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "CategoryId",
+				"type": "String"
+			},
+			{
+				"name": "Category",
+				"type": "String"
+			},
+			{
+				"name": "CreatedDate",
+				"type": "String"
+			},
+			{
+				"name": "DeletedDate",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

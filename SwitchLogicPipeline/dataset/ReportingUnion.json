@@ -1,0 +1,25 @@
+{
+	"name": "ReportingUnion",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "rdest_dl",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "report.csv",
+				"folderPath": "UnionReporing",
+				"fileSystem": "rreporting"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

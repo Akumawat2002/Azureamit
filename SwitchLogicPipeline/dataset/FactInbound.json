@@ -1,0 +1,25 @@
+{
+	"name": "FactInbound",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "rsource_dl",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "Fact_Sales_1.csv",
+				"folderPath": "Inbound",
+				"fileSystem": "rsource"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
