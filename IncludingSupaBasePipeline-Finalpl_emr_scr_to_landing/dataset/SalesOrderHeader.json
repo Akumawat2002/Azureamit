@@ -1,0 +1,17 @@
+{
+	"name": "SalesOrderHeader",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Demo",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "TestSalesOrderHeader"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

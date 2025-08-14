@@ -1,0 +1,274 @@
+{
+	"name": "DataCleaning",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DF_Customer",
+						"type": "DatasetReference"
+					},
+					"name": "Customer"
+				},
+				{
+					"dataset": {
+						"referenceName": "DF_Feedback",
+						"type": "DatasetReference"
+					},
+					"name": "Feeback"
+				},
+				{
+					"dataset": {
+						"referenceName": "DF_OnlineOrders",
+						"type": "DatasetReference"
+					},
+					"name": "OnlineOrders"
+				},
+				{
+					"dataset": {
+						"referenceName": "DF_Products",
+						"type": "DatasetReference"
+					},
+					"name": "Products"
+				},
+				{
+					"dataset": {
+						"referenceName": "DF_StoreSales",
+						"type": "DatasetReference"
+					},
+					"name": "StoreSales"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DF_Sink_Dataset",
+						"type": "DatasetReference"
+					},
+					"name": "FeedBackSink"
+				},
+				{
+					"dataset": {
+						"referenceName": "DF_Sink_Dataset",
+						"type": "DatasetReference"
+					},
+					"name": "OnlineOrderSink"
+				},
+				{
+					"dataset": {
+						"referenceName": "DF_Sink_Dataset",
+						"type": "DatasetReference"
+					},
+					"name": "ProductSink"
+				},
+				{
+					"dataset": {
+						"referenceName": "DF_Sink_Dataset",
+						"type": "DatasetReference"
+					},
+					"name": "StoreSalesSink"
+				},
+				{
+					"dataset": {
+						"referenceName": "DF_Sink_Dataset",
+						"type": "DatasetReference"
+					},
+					"name": "CustomerSink"
+				}
+			],
+			"transformations": [
+				{
+					"name": "CustomerRemovingDuplicates"
+				},
+				{
+					"name": "FeedBackRemovingDuplicates"
+				},
+				{
+					"name": "OnlineOrderRemoveingDuplicates"
+				},
+				{
+					"name": "ProductRemovingDuplicates"
+				},
+				{
+					"name": "StoresSalesRemovingDuplicates"
+				},
+				{
+					"name": "RemovingNullsValues"
+				},
+				{
+					"name": "RemovingNullValuesFeedback"
+				},
+				{
+					"name": "RemovingNullValuesOnlineOrders"
+				},
+				{
+					"name": "RemovingNullsValuesProduct"
+				},
+				{
+					"name": "RemovingNullValuesStoreSales"
+				},
+				{
+					"name": "FullNameDerived"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          customer_id as short,",
+				"          {First Name} as string,",
+				"          {Last Name} as string,",
+				"          gender as string,",
+				"          dob as string,",
+				"          {Email Address} as string,",
+				"          CreatedDate as string,",
+				"          ModifiedDate as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> Customer",
+				"source(output(",
+				"          feedback_id as string,",
+				"          customer_id as short,",
+				"          rating as short,",
+				"          comments as string,",
+				"          submitted_on as string,",
+				"          ModifiedBy as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> Feeback",
+				"source(output(",
+				"          order_id as short,",
+				"          customer_id as short,",
+				"          product_id as short,",
+				"          order_datetime as string,",
+				"          qty as short,",
+				"          payment_mode as string,",
+				"          channel as string,",
+				"          CreatedDate as string,",
+				"          ModifiedDate as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> OnlineOrders",
+				"source(output(",
+				"          product_id as short,",
+				"          {Real Product Name} as string,",
+				"          category as string,",
+				"          price as short,",
+				"          CreatedDate as string,",
+				"          ModifiedDate as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> Products",
+				"source(output(",
+				"          transaction_id as string,",
+				"          customer_id as short,",
+				"          product_id as short,",
+				"          order_date as string,",
+				"          quantity as short,",
+				"          channel as string,",
+				"          CreatedDate as string,",
+				"          ModifiedDate as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> StoreSales",
+				"Customer aggregate(groupBy({First Name},",
+				"          {Email Address},",
+				"          CreatedDate,",
+				"          ModifiedDate,",
+				"          {Last Name},",
+				"          customer_id,",
+				"          gender,",
+				"          dob),",
+				"     cust_count = count(1)) ~> CustomerRemovingDuplicates",
+				"Feeback aggregate(groupBy(feedback_id,",
+				"          customer_id,",
+				"          rating,",
+				"          comments,",
+				"          submitted_on,",
+				"          ModifiedBy),",
+				"     feedback = count(1)) ~> FeedBackRemovingDuplicates",
+				"OnlineOrders aggregate(groupBy(order_id,",
+				"          channel,",
+				"          CreatedDate,",
+				"          ModifiedDate,",
+				"          customer_id,",
+				"          product_id,",
+				"          order_datetime,",
+				"          qty,",
+				"          payment_mode),",
+				"     cust_count = count(1)) ~> OnlineOrderRemoveingDuplicates",
+				"Products aggregate(groupBy({Real Product Name},",
+				"          product_id,",
+				"          category,",
+				"          price,",
+				"          CreatedDate,",
+				"          ModifiedDate),",
+				"     prd_count = count(1)) ~> ProductRemovingDuplicates",
+				"StoreSales aggregate(groupBy(transaction_id,",
+				"          customer_id,",
+				"          product_id,",
+				"          order_date,",
+				"          quantity,",
+				"          channel,",
+				"          CreatedDate,",
+				"          ModifiedDate),",
+				"     SS_count = count(1)) ~> StoresSalesRemovingDuplicates",
+				"CustomerRemovingDuplicates filter(!isNull(customer_id) && !isNull({First Name})) ~> RemovingNullsValues",
+				"FeedBackRemovingDuplicates filter(!isNull(feedback_id) && !isNull(rating) && !isNull(customer_id)) ~> RemovingNullValuesFeedback",
+				"OnlineOrderRemoveingDuplicates filter(!isNull(order_id) && !isNull(customer_id) && !isNull(product_id)) ~> RemovingNullValuesOnlineOrders",
+				"ProductRemovingDuplicates filter(!isNull(product_id) && !isNull({Real Product Name})) ~> RemovingNullsValuesProduct",
+				"StoresSalesRemovingDuplicates filter(!isNull(transaction_id) && !isNull(customer_id)) ~> RemovingNullValuesStoreSales",
+				"RemovingNullsValues derive(FullName = concat({First Name}, ' ' , {Last Name})) ~> FullNameDerived",
+				"RemovingNullValuesFeedback sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:['feedback.csv'],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> FeedBackSink",
+				"RemovingNullValuesOnlineOrders sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:['online_orders.csv'],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> OnlineOrderSink",
+				"RemovingNullsValuesProduct sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:['products.csv'],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> ProductSink",
+				"RemovingNullValuesStoreSales sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:['store_sales.csv'],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> StoreSalesSink",
+				"FullNameDerived sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     partitionFileNames:['customers.csv'],",
+				"     umask: 0022,",
+				"     preCommands: [],",
+				"     postCommands: [],",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> CustomerSink"
+			]
+		}
+	}
+}

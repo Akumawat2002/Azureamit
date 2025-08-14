@@ -1,0 +1,65 @@
+{
+	"name": "SuggestionSqlServer",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServerLinkedService",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "SuggestionId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TechInitiativeId",
+				"type": "varchar"
+			},
+			{
+				"name": "UserId",
+				"type": "varchar"
+			},
+			{
+				"name": "Suggestion",
+				"type": "nvarchar"
+			},
+			{
+				"name": "IsSuggestionApplied",
+				"type": "bit"
+			},
+			{
+				"name": "CreatedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "CreatedBy",
+				"type": "varchar"
+			},
+			{
+				"name": "ModifiedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "ModifiedBy",
+				"type": "varchar"
+			},
+			{
+				"name": "DeletedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "TechInitiative",
+			"table": "Suggestion"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

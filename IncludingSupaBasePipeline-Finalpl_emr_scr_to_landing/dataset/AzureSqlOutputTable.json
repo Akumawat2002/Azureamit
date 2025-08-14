@@ -1,0 +1,17 @@
+{
+	"name": "AzureSqlOutputTable",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlOutput",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "",
+			"table": "emp"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

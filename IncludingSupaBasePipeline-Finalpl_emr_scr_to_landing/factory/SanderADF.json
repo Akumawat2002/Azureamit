@@ -1,0 +1,9 @@
+{
+	"name": "SanderADF",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "7112f860-7392-4e88-b404-c41685869352",
+		"tenantId": "347a3e61-a2d9-4ba5-b184-add49f04415c"
+	}
+}

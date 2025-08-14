@@ -1,0 +1,59 @@
+{
+	"name": "DimProduct",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "EDW_Source_Product",
+						"type": "DatasetReference"
+					},
+					"name": "Product"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "AzureSQL_DimProduct",
+						"type": "DatasetReference"
+					},
+					"name": "DimProduct"
+				}
+			],
+			"transformations": [
+				{
+					"name": "AddRunDate"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          {Real Product Name} as string,",
+				"          product_id as short,",
+				"          category as string,",
+				"          price as short,",
+				"          CreatedDate as string,",
+				"          ModifiedDate as string,",
+				"          prd_count as boolean",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> Product",
+				"Product derive(RunDate = toTimestamp(  toString(    add(add(fromUTC(currentTimestamp(), 'India Standard Time'), hours(5)), minutes(30)),    'dd/MM/yyyy HH:mm:ss'  ),  'dd/MM/yyyy HH:mm:ss')) ~> AddRunDate",
+				"AddRunDate sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     partitionBy('hash', 1),",
+				"     preCommands: [],",
+				"     postCommands: []) ~> DimProduct"
+			]
+		}
+	}
+}

@@ -1,0 +1,77 @@
+{
+	"name": "DimCustomer",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "EDW_Source_Customer",
+						"type": "DatasetReference"
+					},
+					"name": "Customer"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "AzureSQL_DimCustomer",
+						"type": "DatasetReference"
+					},
+					"name": "DimCustomer"
+				}
+			],
+			"transformations": [
+				{
+					"name": "AddRunDate"
+				},
+				{
+					"name": "SelectedColumns"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          {First Name} as string,",
+				"          {Email Address} as string,",
+				"          CreatedDate as string,",
+				"          ModifiedDate as string,",
+				"          {Last Name} as string,",
+				"          customer_id as short,",
+				"          gender as string,",
+				"          dob as string,",
+				"          cust_count as short,",
+				"          FullName as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> Customer",
+				"Customer derive(RunDate = toTimestamp(  toString(    add(add(fromUTC(currentTimestamp(), 'India Standard Time'), hours(5)), minutes(30)),    'dd/MM/yyyy HH:mm:ss'  ),  'dd/MM/yyyy HH:mm:ss')) ~> AddRunDate",
+				"AddRunDate select(mapColumn(",
+				"          {Full Name} = FullName,",
+				"          customer_id,",
+				"          {Email Address},",
+				"          gender,",
+				"          dob,",
+				"          CreatedDate,",
+				"          ModifiedDate,",
+				"          RunDate",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> SelectedColumns",
+				"SelectedColumns sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError',",
+				"     partitionBy('hash', 1),",
+				"     preCommands: [],",
+				"     postCommands: []) ~> DimCustomer"
+			]
+		}
+	}
+}

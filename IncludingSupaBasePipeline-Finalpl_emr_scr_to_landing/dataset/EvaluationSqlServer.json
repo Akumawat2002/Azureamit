@@ -1,0 +1,82 @@
+{
+	"name": "EvaluationSqlServer",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SqlServerLinkedService",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"schema": [
+			{
+				"name": "EvaluationId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "TechInitiativeId",
+				"type": "varchar"
+			},
+			{
+				"name": "ProjectId",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "EvaluatedBy",
+				"type": "varchar"
+			},
+			{
+				"name": "IsAdopted",
+				"type": "bit"
+			},
+			{
+				"name": "AdoptionDate",
+				"type": "date"
+			},
+			{
+				"name": "IsUsedInProduction",
+				"type": "bit"
+			},
+			{
+				"name": "IsUsedInProject",
+				"type": "bit"
+			},
+			{
+				"name": "Remark",
+				"type": "varchar"
+			},
+			{
+				"name": "CreatedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "CreatedBy",
+				"type": "varchar"
+			},
+			{
+				"name": "ModifiedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			},
+			{
+				"name": "ModifiedBy",
+				"type": "varchar"
+			},
+			{
+				"name": "DeletedDate",
+				"type": "datetime",
+				"precision": 23,
+				"scale": 3
+			}
+		],
+		"typeProperties": {
+			"schema": "TechInitiative",
+			"table": "Evaluation"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

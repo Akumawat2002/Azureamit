@@ -1,0 +1,24 @@
+{
+	"name": "InboundFactTrigger",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Stopped",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "R_Pipeline2",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "BlobEventsTrigger",
+		"typeProperties": {
+			"blobPathBeginsWith": "/rsource/blobs/Inbound/Fact_Sales_1.csv",
+			"ignoreEmptyBlobs": true,
+			"scope": "/subscriptions/185bb725-bce0-4ae4-a88b-718e680cacdb/resourceGroups/Azure-RG/providers/Microsoft.Storage/storageAccounts/sanderstoragaccount",
+			"events": [
+				"Microsoft.Storage.BlobCreated"
+			]
+		}
+	}
+}
