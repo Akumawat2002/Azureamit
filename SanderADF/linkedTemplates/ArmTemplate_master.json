@@ -1,0 +1,443 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "SanderADF"
+		},
+		"ADLS_ls_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ADLS_ls'"
+		},
+		"AzureDataLakeStorage_hos_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage_hos'"
+		},
+		"AzureDatabricksDeltaLake_hos_ls_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'AzureDatabricksDeltaLake_hos_ls'"
+		},
+		"AzureExcelBlobLinkedService_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'AzureExcelBlobLinkedService'"
+		},
+		"AzureSQLDB_ls_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'AzureSQLDB_ls'"
+		},
+		"DataflowTest_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'DataflowTest'"
+		},
+		"Demo_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Demo'"
+		},
+		"EDW_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'EDW'"
+		},
+		"LoggingInbound_connectionString": {
+			"type": "secureString",
+			"metadata": "Secure string for 'connectionString' of 'LoggingInbound'"
+		},
+		"PracticeDataLinkedService_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'PracticeDataLinkedService'"
+		},
+		"SqlServerLinkedService_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'SqlServerLinkedService'"
+		},
+		"hosa_sql_ls_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'hosa_sql_ls'"
+		},
+		"rdest_dl_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'rdest_dl'"
+		},
+		"rsource_dl_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'rsource_dl'"
+		},
+		"tt_hc_adb_ls_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'tt_hc_adb_ls'"
+		},
+		"ADLS_ls_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://sanderstoragaccount.dfs.core.windows.net/"
+		},
+		"AzureDataLakeStorage_hos_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://sanderstoragaccount.dfs.core.windows.net/"
+		},
+		"AzureSQLDB_ls_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "azuressqlserver.database.windows.net"
+		},
+		"AzureSQLDB_ls_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "DataSales"
+		},
+		"AzureSQLDB_ls_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "amit"
+		},
+		"DataflowTest_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "LP506"
+		},
+		"DataflowTest_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "TechInitiativeTracker"
+		},
+		"DataflowTest_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "sa"
+		},
+		"Demo_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "azuressqlserver.database.windows.net"
+		},
+		"Demo_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "demo"
+		},
+		"Demo_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "amit"
+		},
+		"EDW_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "azuressqlserver.database.windows.net"
+		},
+		"EDW_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "EDW"
+		},
+		"EDW_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "amit"
+		},
+		"PracticeDataLinkedService_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "LP506"
+		},
+		"PracticeDataLinkedService_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "Employees"
+		},
+		"PracticeDataLinkedService_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "sa"
+		},
+		"SqlServerLinkedService_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "LP506"
+		},
+		"SqlServerLinkedService_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "PocTracker"
+		},
+		"SqlServerLinkedService_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "sa"
+		},
+		"hosa_sql_ls_properties_typeProperties_server": {
+			"type": "string",
+			"defaultValue": "azuressqlserver.database.windows.net"
+		},
+		"hosa_sql_ls_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "@{linkedService().db_name}"
+		},
+		"hosa_sql_ls_properties_typeProperties_userName": {
+			"type": "string",
+			"defaultValue": "amit"
+		},
+		"rdest_dl_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://sanderstoragaccount.dfs.core.windows.net/"
+		},
+		"rsource_dl_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://sanderstoragaccount.dfs.core.windows.net/"
+		},
+		"sourcegit_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://raw.githubusercontent.com"
+		},
+		"tt_hc_adb_ls_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "0722-123005-xokc5qci"
+		},
+		"InboundFactTrigger_properties_typeProperties_scope": {
+			"type": "string",
+			"defaultValue": "/subscriptions/185bb725-bce0-4ae4-a88b-718e680cacdb/resourceGroups/Azure-RG/providers/Microsoft.Storage/storageAccounts/sanderstoragaccount"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "SanderADF_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"ADLS_ls_accountKey": {
+						"value": "[parameters('ADLS_ls_accountKey')]"
+					},
+					"AzureDataLakeStorage_hos_accountKey": {
+						"value": "[parameters('AzureDataLakeStorage_hos_accountKey')]"
+					},
+					"AzureDatabricksDeltaLake_hos_ls_accessToken": {
+						"value": "[parameters('AzureDatabricksDeltaLake_hos_ls_accessToken')]"
+					},
+					"AzureExcelBlobLinkedService_connectionString": {
+						"value": "[parameters('AzureExcelBlobLinkedService_connectionString')]"
+					},
+					"AzureSQLDB_ls_password": {
+						"value": "[parameters('AzureSQLDB_ls_password')]"
+					},
+					"Demo_password": {
+						"value": "[parameters('Demo_password')]"
+					},
+					"EDW_password": {
+						"value": "[parameters('EDW_password')]"
+					},
+					"LoggingInbound_connectionString": {
+						"value": "[parameters('LoggingInbound_connectionString')]"
+					},
+					"hosa_sql_ls_password": {
+						"value": "[parameters('hosa_sql_ls_password')]"
+					},
+					"rdest_dl_accountKey": {
+						"value": "[parameters('rdest_dl_accountKey')]"
+					},
+					"rsource_dl_accountKey": {
+						"value": "[parameters('rsource_dl_accountKey')]"
+					},
+					"tt_hc_adb_ls_accessToken": {
+						"value": "[parameters('tt_hc_adb_ls_accessToken')]"
+					},
+					"ADLS_ls_properties_typeProperties_url": {
+						"value": "[parameters('ADLS_ls_properties_typeProperties_url')]"
+					},
+					"AzureDataLakeStorage_hos_properties_typeProperties_url": {
+						"value": "[parameters('AzureDataLakeStorage_hos_properties_typeProperties_url')]"
+					},
+					"AzureSQLDB_ls_properties_typeProperties_server": {
+						"value": "[parameters('AzureSQLDB_ls_properties_typeProperties_server')]"
+					},
+					"AzureSQLDB_ls_properties_typeProperties_database": {
+						"value": "[parameters('AzureSQLDB_ls_properties_typeProperties_database')]"
+					},
+					"AzureSQLDB_ls_properties_typeProperties_userName": {
+						"value": "[parameters('AzureSQLDB_ls_properties_typeProperties_userName')]"
+					},
+					"Demo_properties_typeProperties_server": {
+						"value": "[parameters('Demo_properties_typeProperties_server')]"
+					},
+					"Demo_properties_typeProperties_database": {
+						"value": "[parameters('Demo_properties_typeProperties_database')]"
+					},
+					"Demo_properties_typeProperties_userName": {
+						"value": "[parameters('Demo_properties_typeProperties_userName')]"
+					},
+					"EDW_properties_typeProperties_server": {
+						"value": "[parameters('EDW_properties_typeProperties_server')]"
+					},
+					"EDW_properties_typeProperties_database": {
+						"value": "[parameters('EDW_properties_typeProperties_database')]"
+					},
+					"EDW_properties_typeProperties_userName": {
+						"value": "[parameters('EDW_properties_typeProperties_userName')]"
+					},
+					"hosa_sql_ls_properties_typeProperties_server": {
+						"value": "[parameters('hosa_sql_ls_properties_typeProperties_server')]"
+					},
+					"hosa_sql_ls_properties_typeProperties_database": {
+						"value": "[parameters('hosa_sql_ls_properties_typeProperties_database')]"
+					},
+					"hosa_sql_ls_properties_typeProperties_userName": {
+						"value": "[parameters('hosa_sql_ls_properties_typeProperties_userName')]"
+					},
+					"rdest_dl_properties_typeProperties_url": {
+						"value": "[parameters('rdest_dl_properties_typeProperties_url')]"
+					},
+					"rsource_dl_properties_typeProperties_url": {
+						"value": "[parameters('rsource_dl_properties_typeProperties_url')]"
+					},
+					"sourcegit_properties_typeProperties_url": {
+						"value": "[parameters('sourcegit_properties_typeProperties_url')]"
+					},
+					"tt_hc_adb_ls_properties_typeProperties_existingClusterId": {
+						"value": "[parameters('tt_hc_adb_ls_properties_typeProperties_existingClusterId')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "SanderADF_ArmTemplate_1",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_1.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'SanderADF_ArmTemplate_0')]"
+			]
+		},
+		{
+			"name": "SanderADF_ArmTemplate_2",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_2.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'SanderADF_ArmTemplate_1')]"
+			]
+		},
+		{
+			"name": "SanderADF_ArmTemplate_3",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_3.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'SanderADF_ArmTemplate_2')]"
+			]
+		},
+		{
+			"name": "SanderADF_ArmTemplate_4",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_4.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"DataflowTest_password": {
+						"value": "[parameters('DataflowTest_password')]"
+					},
+					"PracticeDataLinkedService_password": {
+						"value": "[parameters('PracticeDataLinkedService_password')]"
+					},
+					"SqlServerLinkedService_password": {
+						"value": "[parameters('SqlServerLinkedService_password')]"
+					},
+					"DataflowTest_properties_typeProperties_server": {
+						"value": "[parameters('DataflowTest_properties_typeProperties_server')]"
+					},
+					"DataflowTest_properties_typeProperties_database": {
+						"value": "[parameters('DataflowTest_properties_typeProperties_database')]"
+					},
+					"DataflowTest_properties_typeProperties_userName": {
+						"value": "[parameters('DataflowTest_properties_typeProperties_userName')]"
+					},
+					"PracticeDataLinkedService_properties_typeProperties_server": {
+						"value": "[parameters('PracticeDataLinkedService_properties_typeProperties_server')]"
+					},
+					"PracticeDataLinkedService_properties_typeProperties_database": {
+						"value": "[parameters('PracticeDataLinkedService_properties_typeProperties_database')]"
+					},
+					"PracticeDataLinkedService_properties_typeProperties_userName": {
+						"value": "[parameters('PracticeDataLinkedService_properties_typeProperties_userName')]"
+					},
+					"SqlServerLinkedService_properties_typeProperties_server": {
+						"value": "[parameters('SqlServerLinkedService_properties_typeProperties_server')]"
+					},
+					"SqlServerLinkedService_properties_typeProperties_database": {
+						"value": "[parameters('SqlServerLinkedService_properties_typeProperties_database')]"
+					},
+					"SqlServerLinkedService_properties_typeProperties_userName": {
+						"value": "[parameters('SqlServerLinkedService_properties_typeProperties_userName')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'SanderADF_ArmTemplate_3')]"
+			]
+		},
+		{
+			"name": "SanderADF_ArmTemplate_5",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_5.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"InboundFactTrigger_properties_typeProperties_scope": {
+						"value": "[parameters('InboundFactTrigger_properties_typeProperties_scope')]"
+					}
+				}
+			},
+			"dependsOn": [
+				"[resourceId('Microsoft.Resources/deployments', 'SanderADF_ArmTemplate_4')]"
+			]
+		}
+	]
+}
